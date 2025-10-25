@@ -47,3 +47,20 @@
 			GblObjectClass* objKlass = GBL_OBJECT_CLASS(pClass);\
 			objKlass->pFnSetProperty = name ##_GblObject_setProperty_;\
 			objKlass->pFnProperty = name ## _GblObject_property_;
+
+#if 0
+
+	SAMPLE USAGE CODE
+
+	GBL_PROPERTIES_GETSET(Rect2D,
+       (x, GBL_GENERIC, (READ, WRITE), GBL_FLOAT_TYPE),
+       (y, GBL_GENERIC, (READ, WRITE), GBL_FLOAT_TYPE),
+       (w, GBL_GENERIC, (READ, WRITE), GBL_FLOAT_TYPE),
+       (h, GBL_GENERIC, (READ, WRITE), GBL_FLOAT_TYPE)
+	)
+
+	With this method, you dont need to create getters or setters. When  initializing the property functions for the class
+	you can use `GBL_PROPERTIES_HOOK_CLASS` to let it autogenerate the necessary hook code.
+
+
+#endif
