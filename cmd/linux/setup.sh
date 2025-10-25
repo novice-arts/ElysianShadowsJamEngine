@@ -1,3 +1,3 @@
 
 SCRIPT_DIR=$( cd -- "$( dirname -- "${BASH_SOURCE[0]}" )" &> /dev/null && pwd )
-rm -rf $SCRIPT_DIR/../../build_dreamcast
+cmake -S . -B $SCRIPT_DIR/../../build -DCMAKE_BUILD_TYPE=Debug
