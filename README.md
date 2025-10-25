@@ -23,7 +23,7 @@ Visit here for more info: https://emscripten.org/docs/getting_started/downloads.
 
 The project is setup to work from the SDL3 package found in `deps/SDL` so that you have access to all needed source code.
 
-Once you confirm Emscripten is working, the rest of the scripts in `cmd/emscripten_win` should work as expected.
+Once you confirm Emscripten is working, the rest of the scripts in `cmd/emscripten_win` and `cmd/emscripten_linux` should work as expected.
 
 ## For Dreamcast
 In order to compile this project for Dreamcast, you must first setup the KOS toolchain:
