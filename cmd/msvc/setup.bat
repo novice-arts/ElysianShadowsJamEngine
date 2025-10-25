@@ -1,0 +1,5 @@
+
+set "CMAKE_BUILD_DIR=%~dp0"
+set "CMAKE_ROOT_DIR=%CMAKE_BUILD_DIR:\=/%../.."
+set "CMAKE_BUILD_DIR=%CMAKE_BUILD_DIR:\=/%../../build"
+cmake.exe -S %CMAKE_ROOT_DIR% -B %CMAKE_BUILD_DIR% -DCMAKE_BUILD_TYPE=Debug

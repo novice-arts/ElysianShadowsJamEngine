@@ -1,0 +1,34 @@
+cmake_minimum_required(VERSION 3.10)
+project(GimbalProject)
+
+set(CMAKE_C_STANDARD 17)
+
+option(COMPILE_FOR_DREAMCAST "Compilation for Dreamcast" OFF)
+option(COMPILE_FOR_WEB "Compilation for Web (via Emscripten)" OFF)
+
+if(COMPILE_FOR_DREAMCAST)
+	find_package(SDL3 REQUIRED)
+else()
+	add_subdirectory(deps/SDL)
+endif()
+
+add_subdirectory(deps/libgimbal)
+
+file(GLOB SRCS src/*.c src/*.h)
+
+if(COMPILE_FOR_WEB)
+	set(CMAKE_EXECUTABLE_SUFFIX ".html")
+endif()
+add_executable(gimbal_project main.c ${SRCS})
+
+if(COMPILE_FOR_DREAMCAST)
+	target_link_libraries(gimbal_project  PRIVATE SDL3::SDL3 GL pthread libGimbal)
+else()
+	
+	if(COMPILE_FOR_WEB)
+		set_target_properties(gimbal_project PROPERTIES COMPILE_FLAGS "-Os --closure 1")
+		set_target_properties(gimbal_project PROPERTIES LINK_FLAGS "-Os -s ALLOW_MEMORY_GROWTH=1 -s USE_WEBGL2=1 -s MAX_WEBGL_VERSION=2 -s MIN_WEBGL_VERSION=2 -s WASM=1")
+	endif()
+
+	target_link_libraries(gimbal_project PRIVATE SDL3::SDL3 libGimbal)
+endif()

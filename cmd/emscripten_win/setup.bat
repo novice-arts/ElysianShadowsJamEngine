@@ -1,0 +1,5 @@
+
+set "CMAKE_BUILD_DIR=%~dp0"
+set "CMAKE_ROOT_DIR=%CMAKE_BUILD_DIR:\=/%../.."
+set "CMAKE_BUILD_DIR=%CMAKE_BUILD_DIR:\=/%../../build_web"
+emcmake cmake -S %CMAKE_ROOT_DIR% -B %CMAKE_BUILD_DIR% -DCOMPILE_FOR_WEB=ON
