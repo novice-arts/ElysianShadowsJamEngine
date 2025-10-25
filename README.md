@@ -2,7 +2,7 @@
 A CMake project template for libGimbal and SDL3 for PC, Dreamcast, and Web
 
 To compile the project, you can use the scripts in the `cmd` folder. Each subfolder represents the corresponding toolchain 
-the project has been tested with. Currently the project has been tested from a Windows machine, but other OSes may be added later on.
+the project has been tested with. Currently the project has been tested from Windows and Linux (Linux via normal CMake commands).
 
 In each folder, there's 4 scripts: `clean.sh`, `setup.sh`, `build.sh`, and `run.sh`. The scripts should be run in that order (omit `clean.sh` if you're building for the first time).
 
