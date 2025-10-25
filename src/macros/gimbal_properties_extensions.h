@@ -21,16 +21,14 @@
 	}
 
 
-//TODO: improve the variant function resolution algorithm. Unfortunately we cant use the type parameter in the argument tuple provided
-//b/c GBL_X_TYPE immediately dissolves to a parenthesized expression... not what we were hoping for. As such we can't chain it to resolve new symbols
-#define GBL_PROPERTIES__GEN_GET_INST__(name__, param__) \
+#define GBL_PROPERTIES__GEN_GET_INST__(name__, param__, type__) \
 	case name__ ## _Property_Id_ ## param__: {\
-		 GblVariant_setFloat(pValue, pSelf->param__);\
+		 GblVariant_setValueCopy(pValue, type__, pSelf->param__);\
 	}break;
 
 #define GBL_PROPERTIES__GEN_GET_INST_(...) GBL_PROPERTIES__GEN_GET_INST__(__VA_ARGS__)
 
-#define GBL_PROPERTIES__GEN_GET_INST(name__, param__) GBL_PROPERTIES__GEN_GET_INST_(name__, GBL_PROPERTIES__GEN_INST_EXTRACT_ARGNAME param__)
+#define GBL_PROPERTIES__GEN_GET_INST(name__, param__) GBL_PROPERTIES__GEN_GET_INST_(name__, GBL_PROPERTIES__GEN_INST_EXTRACT_ARGNAME param__, GBL_PROPERTIES__GEN_INST_EXTRACT_TYPE param__)
 
 #define GBL_PROPERTIES__GEN_GET(name__, ...)\
 	static GBL_RESULT name__ ## _GblObject_property_(const GblObject *pObject, const GblProperty *pProp, GblVariant *pValue){\
