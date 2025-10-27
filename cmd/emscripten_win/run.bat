@@ -1,1 +1,0 @@
-emrun %~dp0..\..\build_web\index.html

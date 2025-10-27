@@ -5,8 +5,9 @@
 #include <gimbal/gimbal_strings.h>
 #include <gimbal/gimbal_core.h>
 
-#include "macros/gimbal_properties_extensions.h"
+#include "utils/macros/gimbal_properties_extensions.h"
+#include "utils/macros/gl_helpers.h"
 
-#include "rect2d.h"
+#include "engine/rect2d.h"
 
 #endif // ENGINE_H

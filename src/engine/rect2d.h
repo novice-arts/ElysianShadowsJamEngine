@@ -12,7 +12,7 @@ GBL_FORWARD_DECLARE_STRUCT(Rect2D);
 
 GBL_CLASS_DERIVE(Rect2D, GblObject)
 	GBL_RESULT (*pFnUpdate)(GBL_SELF);
-	GBL_RESULT (*pFnDraw)(GBL_SELF, SDL_Renderer*);
+	GBL_RESULT (*pFnDraw)(GBL_SELF);
 GBL_CLASS_END
 
 
@@ -22,54 +22,13 @@ GBL_INSTANCE_DERIVE(Rect2D, GblObject)
 	float x, y, w, h;
 GBL_INSTANCE_END
 
-
-
-
-GBL_PROPERTIES(Rect2D,
+GBL_PROPERTIES_GETSET(Rect2D,
 	(x, GBL_GENERIC, (READ, WRITE), GBL_FLOAT_TYPE),
 	(y, GBL_GENERIC, (READ, WRITE), GBL_FLOAT_TYPE),
 	(w, GBL_GENERIC, (READ, WRITE), GBL_FLOAT_TYPE),
 	(h, GBL_GENERIC, (READ, WRITE), GBL_FLOAT_TYPE)
 )
 
-static GBL_RESULT Rect2D_GblObject_setProperty_(GblObject *pObject, const GblProperty *pProp, GblVariant *pValue){
-	Rect2D *pSelf = RECT2D(pObject);
-	switch(pProp->id){
-		case Rect2D_Property_Id_x:{
-			GblVariant_valueCopy(pValue, &pSelf->x);
-		}break;
-		case Rect2D_Property_Id_y:{
-			GblVariant_valueCopy(pValue, &pSelf->y);
-		}break;
-		case Rect2D_Property_Id_w:{
-			GblVariant_valueCopy(pValue, &pSelf->w);
-		}break;
-		case Rect2D_Property_Id_h:{
-			GblVariant_valueCopy(pValue, &pSelf->h);
-		}break;
-	}
-	return GBL_RESULT_SUCCESS;
-}
-
-
-static GBL_RESULT Rect2D_GblObject_property_(const GblObject *pObject, const GblProperty *pProp, GblVariant *pValue){
-	Rect2D *pSelf = RECT2D(pObject);
-	switch(pProp->id){
-		case Rect2D_Property_Id_x:{
-			GblVariant_setFloat(pValue, pSelf->x);
-		}break;
-		case Rect2D_Property_Id_y:{
-			GblVariant_setFloat(pValue, pSelf->y);
-		}break;
-		case Rect2D_Property_Id_w:{
-			GblVariant_setFloat(pValue, pSelf->w);
-		}break;
-		case Rect2D_Property_Id_h:{
-			GblVariant_setFloat(pValue, pSelf->h);
-		}break;
-	}
-	return GBL_RESULT_SUCCESS;
-}
 //API
 
 static GBL_RESULT Rect2DClass_init_(GblClass *pClass, const void *pData);
@@ -77,7 +36,7 @@ GblType Rect2D_type(void);
 
 static GBL_RESULT Rect2D_init_(GblInstance *pInstance);
 static GBL_RESULT Rect2D_update_(GBL_SELF);
-static GBL_RESULT Rect2D_draw_(Rect2D* pSelf, SDL_Renderer* renderer);
+static GBL_RESULT Rect2D_draw_(Rect2D* pSelf);
 
 //Implementation
 GblType Rect2D_type(void) {
@@ -105,8 +64,21 @@ GBL_RESULT Rect2D_init_(GblInstance *pInstance){
 
 GBL_RESULT Rect2D_update_(GBL_SELF){return GBL_RESULT_SUCCESS;}
 
-GBL_RESULT Rect2D_draw_(GBL_SELF, SDL_Renderer* renderer) {
-    SDL_RenderFillRect(renderer, &(SDL_FRect) { pSelf->x, pSelf->y, pSelf->w, pSelf->h });
+GBL_RESULT Rect2D_draw_(GBL_SELF) {
+	
+	float x = pSelf->x;
+	float y = pSelf->y;
+	float w = pSelf->w;
+	float h = pSelf->h;
+	GL_DRAW(GL_QUADS){
+		glColor3f(0.8f, 0.1f, 0.15f);
+		glQuad(x, y, w, h, 0.95f);
+		
+		x += 0.2f;
+		glColor3f(0.1f, 0.8f, 0.15f);
+		glQuad(x, y, w, h, 0.95f);
+	}
+	
     return GBL_RESULT_SUCCESS;
 }
 

@@ -1,0 +1,5 @@
+#ifndef PLATFORM_SPECIFIC_H_
+#define PLATFORM_SPECIFIC_H_
+
+
+#endif //PLATFORM_SPECIFIC_H_
