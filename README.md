@@ -17,14 +17,6 @@ If you have a decent installation of Microsoft Visual Studio, you can run the ba
 Presently the project is setup to use MSYS2 MINGW64 terminal, so use the `cmd/msys` folder accordingly. For other types of MinGW installation, 
 try the `cmd/mingw` folder and see if that works.
 
-## For Web
-In order to compile this project for the web you will need Emscripten installed and the environment activated in your terminal session.
-Visit here for more info: https://emscripten.org/docs/getting_started/downloads.html
-
-The project is setup to work from the SDL3 package found in `deps/SDL` so that you have access to all needed source code.
-
-Once you confirm Emscripten is working, the rest of the scripts in `cmd/emscripten_win` and `cmd/emscripten_linux` should work as expected.
-
 ## For Dreamcast
 In order to compile this project for Dreamcast, you must first setup the KOS toolchain:
 https://dreamcast.wiki/Getting_Started_with_Dreamcast_development
