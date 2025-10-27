@@ -1,5 +1,5 @@
-# gimbal_project_template
-A CMake project template for [libGimbal](https://github.com/gyrovorbis/libgimbal) and SDL3 for PC, Dreamcast, and Web
+# gimbal_project_SDL3_GL_template
+A CMake project template for [libGimbal](https://github.com/gyrovorbis/libgimbal) and SDL3 for PC, Dreamcast
 
 To compile the project, you can use the scripts in the `cmd` folder. Each subfolder represents the corresponding toolchain 
 the project has been tested with. Currently the project has been tested from Windows and Linux (Linux via normal CMake commands).
