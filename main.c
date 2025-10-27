@@ -71,14 +71,6 @@ static inline void (app_teardown)(void){
 	SDL_Quit();
 }
 
-
-static inline void (app_loop)(void){
-	app_update();	 
-	if(quit){
-		app_teardown();
-	}
-}
-
 int main(int argc, char* argv[]){    
 	if(!app_setup())
 		return 1;
