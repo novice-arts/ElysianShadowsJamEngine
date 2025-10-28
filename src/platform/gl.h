@@ -7,7 +7,7 @@
 	#define glCheckError() 
 	#define platform_GL_setup()
 #else
-	#include "../../../deps/glad/3_3/glad.h"
+	#include <deps/glad/3_3/glad.h>
 	#include <SDL3/SDL_opengl.h>
 	
 	GLenum glCheckError_(const char *file, int line)
