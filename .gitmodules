@@ -9,3 +9,6 @@
 	path = deps/SDL_image
 	url = https://github.com/libsdl-org/SDL_image.git
 	branch = release-3.2.x
+[submodule "deps/sh4zam"]
+	path = deps/sh4zam
+	url = https://github.com/gyrovorbis/sh4zam.git
