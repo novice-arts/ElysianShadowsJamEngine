@@ -8,6 +8,7 @@
 #include "utils/macros/gimbal_properties_extensions.h"
 #include "utils/macros/gl_helpers.h"
 
+#include "engine/input.h"
 #include "engine/rect2d.h"
 
 #endif // ENGINE_H

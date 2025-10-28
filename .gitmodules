@@ -5,3 +5,7 @@
 [submodule "deps/libgimbal"]
 	path = deps/libgimbal
 	url = https://github.com/gyrovorbis/libgimbal.git
+[submodule "deps/SDL_image"]
+	path = deps/SDL_image
+	url = https://github.com/libsdl-org/SDL_image.git
+	branch = release-3.2.x
