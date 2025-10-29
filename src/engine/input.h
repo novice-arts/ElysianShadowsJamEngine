@@ -3,6 +3,13 @@
 #ifndef ENGINE_INPUT_H_
 #define ENGINE_INPUT_H_
 
+#ifndef GIMBAL_ALREADY_INCLUDED
+#define GIMBAL_ALREADY_INCLUDED
+    #include <gimbal/gimbal_meta.h>
+    #include <gimbal/gimbal_strings.h>
+    #include <gimbal/gimbal_core.h>
+#endif 
+
 #define INPUT_TYPE           (GBL_TYPEID(Input))
 #define INPUT_CLASS(klass)   (GBL_CLASS_CAST(Input, klass))
 
@@ -28,7 +35,6 @@ GBL_CLASS_BASE(Input)
     int test;
 GBL_CLASS_END
 
-GBL_EXPORT bool Input_pressed(GBL_CSELF){return false;}
 
 
 GBL_DECLS_END

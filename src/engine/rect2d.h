@@ -1,6 +1,12 @@
 #ifndef ENGINE_RECT2D_H
 #define ENGINE_RECT2D_H
 
+#ifndef GIMBAL_ALREADY_INCLUDED
+#define GIMBAL_ALREADY_INCLUDED
+    #include <gimbal/gimbal_meta.h>
+    #include <gimbal/gimbal_strings.h>
+    #include <gimbal/gimbal_core.h>
+#endif 
 
 #define RECT2D_TYPE				(GBL_TYPEID(Rect2D))
 #define RECT2D(self)			(GBL_CAST(Rect2D, self))
@@ -22,81 +28,22 @@ GBL_INSTANCE_DERIVE(Rect2D, GblObject)
 	float x, y, w, h;
 GBL_INSTANCE_END
 
-GBL_PROPERTIES_GETSET(Rect2D,
-	(x, GBL_GENERIC, (READ, WRITE), GBL_FLOAT_TYPE),
-	(y, GBL_GENERIC, (READ, WRITE), GBL_FLOAT_TYPE),
-	(w, GBL_GENERIC, (READ, WRITE), GBL_FLOAT_TYPE),
+#define RECT2D_PROPERTIES \
+	(x, GBL_GENERIC, (READ, WRITE), GBL_FLOAT_TYPE),\
+	(y, GBL_GENERIC, (READ, WRITE), GBL_FLOAT_TYPE),\
+	(w, GBL_GENERIC, (READ, WRITE), GBL_FLOAT_TYPE),\
 	(h, GBL_GENERIC, (READ, WRITE), GBL_FLOAT_TYPE)
-)
 
-//API
+GBL_PROPERTIES(Rect2D, RECT2D_PROPERTIES)
 
-static GBL_RESULT Rect2DClass_init_(GblClass *pClass, const void *pData);
+
+GBL_RESULT Rect2DClass_init_(GblClass *pClass, const void *pData);
 GblType Rect2D_type(void);
 
-static GBL_RESULT Rect2D_init_(GblInstance *pInstance);
-static GBL_RESULT Rect2D_update_(GBL_SELF);
-static GBL_RESULT Rect2D_draw_(Rect2D* pSelf);
+GBL_RESULT Rect2D_init_(GblInstance *pInstance);
+GBL_RESULT Rect2D_update_(GBL_SELF);
+GBL_RESULT Rect2D_draw_(GBL_SELF);
 
-//Implementation
-GblType Rect2D_type(void) {
-	static GblType type = GBL_INVALID_TYPE;
-	static GblTypeInfo tInfo = {
-			.classSize = sizeof(Rect2DClass),
-			.pFnClassInit = Rect2DClass_init_,
-			.instanceSize = sizeof(Rect2D),
-			.pFnInstanceInit = Rect2D_init_
-	};
-	if(type == GBL_INVALID_TYPE){
-		type = GblType_register(GblQuark_internStatic("Rect2D"), GBL_OBJECT_TYPE, &tInfo, GBL_TYPE_FLAG_TYPEINFO_STATIC);
-	}
-	return type;
-}
-
-GBL_RESULT Rect2D_init_(GblInstance *pInstance){
-	Rect2D* rect_instance = RECT2D(pInstance);
-	rect_instance->x = 160.0f;
-	rect_instance->y = 120;
-	rect_instance->w = 320;
-	rect_instance->h = 240;
-	return GBL_RESULT_SUCCESS;
-}
-
-GBL_RESULT Rect2D_update_(GBL_SELF){return GBL_RESULT_SUCCESS;}
-
-GBL_RESULT Rect2D_draw_(GBL_SELF) {
-	
-	float x = pSelf->x;
-	float y = pSelf->y;
-	float w = pSelf->w;
-	float h = pSelf->h;
-	GL_DRAW(GL_QUADS){
-		glColor3f(0.8f, 0.1f, 0.15f);
-		glQuad(x, y, w, h, 0.95f);
-		
-		x += 0.2f;
-		glColor3f(0.1f, 0.8f, 0.15f);
-		glQuad(x, y, w, h, 0.95f);
-	}
-	
-    return GBL_RESULT_SUCCESS;
-}
-
-
-GBL_RESULT Rect2DClass_init_(GblClass *pClass, const void *pData){
-	GBL_UNUSED(pData);
-	
-	if(!GblType_classRefCount(GBL_CLASS_TYPEOF(pClass))) GBL_PROPERTIES_REGISTER(Rect2D);
-
-
-	GBL_PROPERTIES_HOOK_CLASS(Rect2D);
-
-	Rect2DClass* klass = RECT2D_CLASS(pClass);
-	klass->pFnUpdate = Rect2D_update_;
-	klass->pFnDraw = Rect2D_draw_;
-	
-	return GBL_RESULT_SUCCESS;
-}
 /*format: name, value, name, value, ... */
 #define Rect2D_create(name, ...)	GBL_NEW(Rect2D, name, __VA_ARGS__)
 #define Rect2D_create_empty(...)	GBL_NEW(Rect2D)

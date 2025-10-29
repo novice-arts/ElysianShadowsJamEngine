@@ -12,3 +12,14 @@
 		glVertex3f(x + w, y + h,  z);\
 		glVertex3f(x + w, 	  y,  z);\
 		glVertex3f(x, 		  y,  z)
+
+
+#define glTexturedQuad(x, y, w, h, z) \
+		glTexCoord2f(0.0f, 0.0f);\
+		glVertex3f(x,	  y + h,  z);\
+		glTexCoord2f(1.0f, 0.0f);\
+		glVertex3f(x + w, y + h,  z);\
+		glTexCoord2f(1.0f, 1.0f);\
+		glVertex3f(x + w, 	  y,  z);\
+		glTexCoord2f(0.0f, 1.0f);\
+		glVertex3f(x, 		  y,  z)

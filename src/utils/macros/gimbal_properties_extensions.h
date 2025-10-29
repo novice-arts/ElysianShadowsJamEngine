@@ -40,8 +40,8 @@
 	}
 
 #define GBL_PROPERTIES_GETSET(name, ...) GBL_PROPERTIES(name, __VA_ARGS__) GBL_PROPERTIES__GEN_SET(name, __VA_ARGS__) GBL_PROPERTIES__GEN_GET(name, __VA_ARGS__)
-#define GBL_PROPERTIES_SET(name, ...) GBL_PROPERTIES(name, __VA_ARGS__) GBL_PROPERTIES__GEN_SET(name, __VA_ARGS__) 
-#define GBL_PROPERTIES_GET(name, ...) GBL_PROPERTIES(name, __VA_ARGS__) GBL_PROPERTIES__GEN_GET(name, __VA_ARGS__) 
+#define GBL_PROPERTIES_SET(name, ...)  GBL_PROPERTIES__GEN_SET(name, __VA_ARGS__) 
+#define GBL_PROPERTIES_GET(name, ...)  GBL_PROPERTIES__GEN_GET(name, __VA_ARGS__) 
 
 #define GBL_PROPERTIES_HOOK_CLASS(name) \
 			GblObjectClass* objKlass = GBL_OBJECT_CLASS(pClass);\

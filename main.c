@@ -9,7 +9,10 @@
     #include <gimbal/gimbal_core.h>
 #endif 
 #include <src/platform.h>
+#include <src/engine.h>
 #include <src/app.h>
+
+#include <project/project.h>
 
 // Main loop flag
 int quit = 0;
@@ -43,13 +46,7 @@ static inline bool (app_setup)(void){
 	
 	SDL_GL_MakeCurrent(window, gl_context);
 	
-	//init gl
-	glViewport(0, 0, 640, 480);
-	glClearColor(0.0f, 0.0f, 1.0f, 0.0f);
-    glClearDepth(1.0);
-    glDepthFunc(GL_LESS);
-    glEnable(GL_DEPTH_TEST);
-	glShadeModel(GL_SMOOTH);
+
 	
 	project_setup();
 	
