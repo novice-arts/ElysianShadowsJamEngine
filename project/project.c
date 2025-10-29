@@ -1,4 +1,5 @@
 #include <SDL3/SDL.h>
+#include <SDL3_image/SDL_image.h>
 #include <stdio.h>
 
 #include <src/platform.h>
@@ -16,6 +17,13 @@ void print_test(){
 
 void project_setup(){
     print_test();
+    glViewport(0, 0, 640, 480);
+    glClearColor(0.0f, 0.0f, 1.0f, 0.0f);
+    glClearDepth(1.0);
+    glDepthFunc(GL_LESS);
+    glEnable(GL_DEPTH_TEST);
+    glEnable(GL_BLEND);
+    glShadeModel(GL_SMOOTH);
 	my_rect = Rect2D_create("x", -0.85f, "y", 0.25f, "w", .5f, "h", .5f);
 }
 

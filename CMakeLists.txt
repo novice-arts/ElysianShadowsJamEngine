@@ -4,7 +4,7 @@ project(GimbalProject)
 set(CMAKE_C_STANDARD 17)
 
 option(COMPILE_FOR_DREAMCAST "Compilation for Dreamcast" OFF)
-option(PROJECT_IS_EXTERNAL   "Use separate folder for project" ON)
+option(PROJECT_IS_EXTERNAL   "Use separate folder for project" OFF)
 
 if(PROJECT_IS_EXTERNAL)
 	set(PROJECT_PARENT_FOLDER ${CMAKE_CURRENT_SOURCE_DIR}/../ElysianShadowsJam_Game)
